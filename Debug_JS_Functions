@@ -1,0 +1,69 @@
+//------------------------- START OF CODE ---------------
+function stack(stackOperation, stackValue) {
+  // keep this function call here 
+  var stackHolder = {
+    count: 3,
+    storage: [
+      1,
+      '{id: 1,value: "obj"}',
+      "stringHolder",
+      46
+    ]
+  };
+
+  switch (stackOperation) {
+    case 'push':
+      return push(stackHolder, stackValue);
+    case 'pop':
+      return pop(stackHolder);
+    case 'swap':
+      return swap(stackHolder);
+    case 'peek':
+      return peek(stackHolder);
+    default:
+      return stackHolder.storage;
+  }
+}
+
+function push(stackHolder, stavalue) {
+  stackHolder.storage[stackHolder.count + 1] = stavalue;
+  stackHolder.count++;
+  return stackHolder.storage;
+}
+
+function pop(stackHolder) {
+
+  if (stackHolder.count === 0) {
+    return [];
+  }
+
+  
+  stackHolder.storage.splice(stackHolder.count, 1);
+  stackHolder.count--;
+  return stackHolder.storage;
+}
+
+function peek(stackHolder) {
+  return stackHolder.storage[stackHolder.count];
+}
+
+function swap(stackHolder) {
+  var temp = stackHolder.storage[0];
+  stackHolder.storage[0] = stackHolder.storage[stackHolder.count];
+  stackHolder.storage[stackHolder.count] = temp;
+  return stackHolder.storage;
+}
+
+
+
+
+
+
+console.log('push: ' + stack('push', 42));
+console.log('pop: ' + stack('pop'));
+console.log('swap: ' + stack('swap'));
+console.log('peek: ' + stack('peek'));
+console.log('default: ' + stack(''));
+
+
+//------------------------- END OF CODE ---------------
